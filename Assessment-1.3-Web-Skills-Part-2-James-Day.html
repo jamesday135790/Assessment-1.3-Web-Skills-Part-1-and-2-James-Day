@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bird Viewer — Part B</title>
+  <style>
+    /* Two palettes with the SAME variable names (5 each) */
+    :root{
+      --primary-color:#0f172a;   /* surface */
+      --secondary-color:#1e293b; /* container */
+      --bg-color:#0b1220;        /* page background */
+      --font-color:#e5e7eb;      /* text */
+      --heading-color:#38bdf8;   /* headings */
+    }
+    [data-theme="dark"]{
+      --primary-color:#e5e7eb;
+      --secondary-color:#94a3b8;
+      --bg-color:#0f172a;
+      --font-color:#f8fafc;
+      --heading-color:#f472b6;
+    }
+
+    html,body{height:100%}
+    body{
+      margin:0;background:var(--bg-color);color:var(--font-color);
+      font-family:Arial,Helvetica,sans-serif;display:grid;place-items:start center;padding:24px;
+    }
+    .wrap{
+      width:min(800px,100%);background:var(--secondary-color);
+      border-radius:12px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.25)
+    }
+    h1{color:var(--heading-color);margin:0 0 8px;text-align:center}
+    .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0 20px}
+    button{cursor:pointer;border:none;padding:10px 14px;border-radius:999px}
+    .viewer{display:grid;gap:12px}
+    .viewer img{width:100%;height:auto;border-radius:8px;display:block;background:var(--primary-color)}
+    .caption{margin:0;opacity:.9}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Bird Viewer</h1>
+
+    <div class="controls">
+      <button data-bird="Pardalote">Pardalote</button>
+      <button data-bird="Purple Swamp Hen">Purple Swamp Hen</button>
+      <button data-bird="White-headed Stilt">White-headed Stilt</button>
+      <button data-bird="Inland Thornbill">Inland Thornbill</button>
+      <button data-bird="Rose Robin">Rose Robin</button>
+      <button id="toggleTheme">Toggle Theme</button>
+    </div>
+
+    <main class="viewer">
+      <!-- default image + caption on first load -->
+      <img id="birdImg" src="http://www.outgrabe.net/bird00.jpg" alt="Pardalote">
+      <p id="birdCaption" class="caption">Pardalote by fir0002 (CC-by-NC)</p>
+    </main>
+  </div>
+
+  <script>
+    // Five birds (exact URLs from your brief)
+    const birds = {
+      "Pardalote": { src:"http://www.outgrabe.net/bird00.jpg", caption:"Pardalote by fir0002 (CC-by-NC)", alt:"Pardalote" },
+      "Purple Swamp Hen": { src:"http://www.outgrabe.net/bird01.jpg", caption:"Purple swamp hen by Toby Hudson (CC-by-SA)", alt:"Purple Swamp Hen" },
+      "White-headed Stilt": { src:"http://www.outgrabe.net/bird02.jpg", caption:"White-headed Stilt by JJ Harrison (CC-by-SA)", alt:"White-headed Stilt" },
+      "Inland Thornbill": { src:"http://www.outgrabe.net/bird03.jpg", caption:"Inland Thornbill by Peter Jacobs (CC-by-SA)", alt:"Inland Thornbill" },
+      "Rose Robin": { src:"http://www.outgrabe.net/bird04.jpg", caption:"Rose Robin by JJ Harrison (CC-by-SA)", alt:"Rose Robin" }
+    };
+
+    const imgEl = document.getElementById("birdImg");
+    const capEl = document.getElementById("birdCaption");
+
+    // Update the single <img> and <p> when a bird button is clicked
+    document.querySelectorAll("button[data-bird]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const b = birds[btn.dataset.bird];
+        imgEl.src = b.src;
+        imgEl.alt = b.alt;
+        capEl.textContent = b.caption;
+      });
+    });
+
+    // Theme toggle — flips data-theme on <html> both ways
+    const root = document.documentElement;
+    document.getElementById("toggleTheme").addEventListener("click", () => {
+      const cur = root.getAttribute("data-theme") || "light";
+      root.setAttribute("data-theme", cur === "light" ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>
