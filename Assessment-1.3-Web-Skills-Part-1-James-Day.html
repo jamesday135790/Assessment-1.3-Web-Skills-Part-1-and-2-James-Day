@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Provided Page — Part A</title>
+  <style>
+    :root{
+      --base-font-color: rgb(131,148,150);
+      --c-background-color: rgb(0, 43, 54);
+      --c-background-highlights: rgb(7, 54, 66);
+      --c-yellow: rgb(181,137,0);
+      --c-orange: rgb(203,75,22);
+      --c-red: rgb(220,50,47);
+      --c-magenta: rgb(211,54,130);
+      --c-blue: rgb(38,139,210);
+      --c-cyan: rgb(42,161,152);
+      --c-green: rgb(133,153,0);
+    }
+
+    html,body{margin:0;background:var(--c-background-color);color:var(--base-font-color);font-family:Arial,Helvetica,sans-serif}
+    header,nav,main,footer{max-width:800px;margin:0 auto;padding:0 16px}
+
+    header,footer{background:var(--c-background-highlights)}
+    header{font-size:150%;text-align:center;padding:12px 0}
+    header h1{color:var(--c-yellow);margin:0}
+    footer{padding:6px 0;font-size:.9rem}
+
+    nav ul{list-style:none;display:flex;justify-content:center;gap:48px;padding:12px 0;margin:0}
+    nav a{text-decoration:none;color:inherit}
+    nav form{margin:6px 0 0 0}
+
+    main{display:flex;gap:24px;align-items:flex-start;padding:16px 0 24px}
+    article{flex:1 1 auto}
+    aside{flex:0 0 260px}
+
+    article a{color:var(--c-magenta)}
+    article a:hover, article a:focus{color:var(--c-orange)}
+
+    section.subsection{border:3px solid var(--c-cyan);padding:12px}
+    section.subsection + section.subsection{margin-top:12px}
+
+    article h1,article h2,article h3,article h4,article h5,article h6{padding-top:50px;margin-top:0}
+
+    aside{color:var(--c-green)}
+    aside a{color:var(--c-red)}
+    aside a:hover,aside a:focus{color:var(--c-blue)}
+
+    @media (max-width:700px){
+      main{flex-direction:column}
+      aside{flex-basis:auto}
+    }
+  </style>
+</head>
+<body>
+  <header><h1>Header</h1></header>
+
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Our team</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <form>
+      <input type="search" name="q" placeholder="Search query">
+      <input type="submit" value="Go!">
+    </form>
+  </nav>
+
+  <main>
+    <article>
+      <h2>Article heading</h2>
+      <p>Here is an <a href="#">example link</a> inside the article.</p>
+
+      <section class="subsection">
+        <h3>Subsection</h3>
+        <p>Paragraph A.</p>
+        <p>Paragraph B.</p>
+      </section>
+
+      <section class="subsection">
+        <h3>Another subsection</h3>
+        <p>Paragraph C.</p>
+        <p>Paragraph D.</p>
+      </section>
+    </article>
+
+    <aside>
+      <h2>Related</h2>
+      <ul>
+        <li><a href="#">Oh I do like to be beside the seaside</a></li>
+        <li><a href="#">Oh I do like to be beside the sea</a></li>
+        <li><a href="#">Although in the North of England</a></li>
+        <li><a href="#">It never stops raining</a></li>
+        <li><a href="#">Oh well...</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer><p>©Copyright 2050 by nobody. All rights reversed.</p></footer>
+</body>
+</html>
